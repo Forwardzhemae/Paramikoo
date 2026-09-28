@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  host-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    container_name: host-server
+    restart: always
+
+  host-client:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    container_name: host-client
+    volumes:
+      - ./main.py:/app/main.py
+    depends_on:
+      - host-server
