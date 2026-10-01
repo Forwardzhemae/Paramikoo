@@ -1,6 +1,0 @@
-FROM debian:latest
-RUN apt-get update && apt-get install -y openssh-server && mkdir /var/run/sshd
-RUN echo 'root:root' | chpasswd && sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
-RUN echo "CONFIDENTIAL_LOG_ENTRY: User login successful" > /var/log/fake_auth.log
-EXPOSE 22
-CMD ["/usr/sbin/sshd", "-D"]
